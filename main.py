@@ -1,16 +1,19 @@
-# This is a sample Python script.
+from win32gui import GetWindowText, GetForegroundWindow
+import time
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
+windict={}
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    curWin = GetWindowText(GetForegroundWindow())
+    windict[curWin]=[0,time.time()]
+    while(True):
+        last == GetWindowText(GetForegroundWindow())
+        while(curWin==last): #breakout when curWin is diff
+            last=curWin
+            curWin=GetWindowText(GetForegroundWindow())
+        windict[last][0]+=time.time()-windict[1]
+        if curWin not in windict:
+            windict[curWin]=[0,time.time()]
+        else:
+            windict[curWin][1]=time.time()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
